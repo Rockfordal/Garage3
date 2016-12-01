@@ -23,7 +23,7 @@ namespace Garage3.Repositories
 
         public IEnumerable<Person> GetPeople()
         {
-            return db.People.ToList();
+            return db.People;
         }
 
         public Person FindPersonById(int? id)
@@ -58,20 +58,20 @@ namespace Garage3.Repositories
 
         #region VehicleType
 
-        public List<VehicleType> GetAllVehicleTypes()
+        public IEnumerable<VehicleType> GetAllVehicleTypes()
         {
-            return db.VehicleTypes.ToList();
+            return db.VehicleTypes;
         }
 
-        public List<string> GetAllVehicleTypeNames()
-        {
-            List<string> tmp = new List<string>();
-            foreach(var vt in db.VehicleTypes)
-            {
-                tmp.Add(vt.Type);
-            }
-            return tmp;
-        }
+        //public List<string> VehicleTypes()
+        //{
+        //    List<string> tmp = new List<string>();
+        //    foreach (var vt in db.VehicleTypes)
+        //    {
+        //        tmp.Add(vt.Type);
+        //    }
+        //    return tmp;
+        //}
 
         public VehicleType FindVehicleTypeById(int? id)
         {
@@ -121,9 +121,9 @@ namespace Garage3.Repositories
             return tmp;
         }
 
-        public List<Vehicle> GetAllVehicles()
+        public IQueryable<Vehicle> GetAllVehicles()
         {
-            return db.Vehicles.ToList();
+            return db.Vehicles;
         }
 
         public Vehicle FindVehicleById(int? id)
@@ -160,9 +160,9 @@ namespace Garage3.Repositories
 
         #region Owner
 
-        public List<Owner> GetAllOwners()
+        public IQueryable<Owner> GetAllOwners()
         {
-            return db.Owners.ToList();
+            return db.Owners;
         }
 
         public void MakeOwner(Vehicle v, Person p)
@@ -203,14 +203,13 @@ namespace Garage3.Repositories
 
         #region Search
 
-        public List<Vehicle> GetVehiclesFromSearch(string search, string type)
+        public IQueryable<Vehicle> GetVehiclesFromSearch(string search, string type)
         {
             return GetAllVehicles()
                 .Where(v => (
                         (v.Manufacturer == search || v.RegNr == search || v.Color == search || v.NumberOfWheels.ToString() == search || search == "")
                      && (v.VehicleType.Type == type || type == "")
-                       ))
-                .ToList();
+                       ));
         }
 
         #endregion

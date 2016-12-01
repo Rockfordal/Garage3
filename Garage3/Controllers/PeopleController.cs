@@ -17,13 +17,18 @@ namespace Garage3.Controllers
     public class PeopleController : ApiController
     {
         private AppContext db = new AppContext();
-        //private readonly SuperRepository _repo;
+        private readonly SuperRepository _repo;
+
+        public PeopleController()
+        {
+            _repo = new SuperRepository();
+        }
 
         // GET: api/People
         public ICollection<Person> Get_People()
         {
-            return db.People.ToList();
-            //return _repo.GetPeople();
+            //return db.People.ToList();
+            return _repo.GetPeople().ToList();
         }
 
         // GET: api/People/5
