@@ -10,47 +10,50 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Garage3.DataAccess;
 using Garage3.Entities;
+using Garage3.Repositories;
 
 namespace Garage3.Controllers
 {
-    public class VehicleTypesController : ApiController
+    public class PeopleController : ApiController
     {
         private AppContext db = new AppContext();
+        //private readonly SuperRepository _repo;
 
-        // GET: api/VehicleTypes
-        public IQueryable<VehicleType> Get_VehicleTypes()
+        // GET: api/People
+        public ICollection<Person> Get_People()
         {
-            return db.VehicleTypes;
+            return db.People.ToList();
+            //return _repo.GetPeople();
         }
 
-        // GET: api/VehicleTypes/5
-        [ResponseType(typeof(VehicleType))]
-        public IHttpActionResult GetVehicleType(int id)
+        // GET: api/People/5
+        [ResponseType(typeof(Person))]
+        public IHttpActionResult GetPerson(int id)
         {
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
-            if (vehicleType == null)
+            Person person = db.People.Find(id);
+            if (person == null)
             {
                 return NotFound();
             }
 
-            return Ok(vehicleType);
+            return Ok(person);
         }
 
-        // PUT: api/VehicleTypes/5
+        // PUT: api/People/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutVehicleType(int id, VehicleType vehicleType)
+        public IHttpActionResult PutPerson(int id, Person person)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != vehicleType.Id)
+            if (id != person.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(vehicleType).State = EntityState.Modified;
+            db.Entry(person).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +61,7 @@ namespace Garage3.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VehicleTypeExists(id))
+                if (!PersonExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +74,35 @@ namespace Garage3.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/VehicleTypes
-        [ResponseType(typeof(VehicleType))]
-        public IHttpActionResult PostVehicleType(VehicleType vehicleType)
+        // POST: api/People
+        [ResponseType(typeof(Person))]
+        public IHttpActionResult PostPerson(Person person)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.VehicleTypes.Add(vehicleType);
+            db.People.Add(person);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = vehicleType.Id }, vehicleType);
+            return CreatedAtRoute("DefaultApi", new { id = person.Id }, person);
         }
 
-        // DELETE: api/VehicleTypes/5
-        [ResponseType(typeof(VehicleType))]
-        public IHttpActionResult DeleteVehicleType(int id)
+        // DELETE: api/People/5
+        [ResponseType(typeof(Person))]
+        public IHttpActionResult DeletePerson(int id)
         {
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
-            if (vehicleType == null)
+            Person person = db.People.Find(id);
+            if (person == null)
             {
                 return NotFound();
             }
 
-            db.VehicleTypes.Remove(vehicleType);
+            db.People.Remove(person);
             db.SaveChanges();
 
-            return Ok(vehicleType);
+            return Ok(person);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +114,9 @@ namespace Garage3.Controllers
             base.Dispose(disposing);
         }
 
-        private bool VehicleTypeExists(int id)
+        private bool PersonExists(int id)
         {
-            return db.VehicleTypes.Count(e => e.Id == id) > 0;
+            return db.People.Count(e => e.Id == id) > 0;
         }
     }
 }

@@ -14,10 +14,10 @@ namespace Garage3.DataAccess
     {
         public AppContext() : base("DefaultConnection") { }
 
-        public virtual DbSet<VehicleType>   db_VehicleTypes { get; set; }
-        public virtual DbSet<Vehicle>       db_Vehicles     { get; set; }
-        public virtual DbSet<Person>        db_Persons      { get; set; }
-        public virtual DbSet<Owner>         db_Owners       { get; set; }
+        public virtual DbSet<VehicleType>   VehicleTypes { get; set; }
+        public virtual DbSet<Vehicle>       Vehicles     { get; set; }
+        public virtual DbSet<Person>        People       { get; set; }
+        public virtual DbSet<Owner>         Owners       { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -47,6 +47,5 @@ namespace Garage3.DataAccess
                     new IndexAnnotation(
                         new IndexAttribute("IX_RegNr", 1) { IsUnique = true }));
         }
-
     }
 }

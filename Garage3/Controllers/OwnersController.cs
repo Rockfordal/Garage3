@@ -13,44 +13,44 @@ using Garage3.Entities;
 
 namespace Garage3.Controllers
 {
-    public class VehicleTypesController : ApiController
+    public class OwnersController : ApiController
     {
         private AppContext db = new AppContext();
 
-        // GET: api/VehicleTypes
-        public IQueryable<VehicleType> Get_VehicleTypes()
+        // GET: api/Owners
+        public ICollection<Owner> GetOwners()
         {
-            return db.VehicleTypes;
+            return db.Owners.ToList();
         }
 
-        // GET: api/VehicleTypes/5
-        [ResponseType(typeof(VehicleType))]
-        public IHttpActionResult GetVehicleType(int id)
+        // GET: api/Owners/5
+        [ResponseType(typeof(Owner))]
+        public IHttpActionResult GetOwner(int id)
         {
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
-            if (vehicleType == null)
+            Owner owner = db.Owners.Find(id);
+            if (owner == null)
             {
                 return NotFound();
             }
 
-            return Ok(vehicleType);
+            return Ok(owner);
         }
 
-        // PUT: api/VehicleTypes/5
+        // PUT: api/Owners/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutVehicleType(int id, VehicleType vehicleType)
+        public IHttpActionResult PutOwner(int id, Owner owner)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != vehicleType.Id)
+            if (id != owner.PersonId)
             {
                 return BadRequest();
             }
 
-            db.Entry(vehicleType).State = EntityState.Modified;
+            db.Entry(owner).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace Garage3.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VehicleTypeExists(id))
+                if (!OwnerExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +71,50 @@ namespace Garage3.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/VehicleTypes
-        [ResponseType(typeof(VehicleType))]
-        public IHttpActionResult PostVehicleType(VehicleType vehicleType)
+        // POST: api/Owners
+        [ResponseType(typeof(Owner))]
+        public IHttpActionResult PostOwner(Owner owner)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.VehicleTypes.Add(vehicleType);
-            db.SaveChanges();
+            db.Owners.Add(owner);
 
-            return CreatedAtRoute("DefaultApi", new { id = vehicleType.Id }, vehicleType);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (OwnerExists(owner.PersonId))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = owner.PersonId }, owner);
         }
 
-        // DELETE: api/VehicleTypes/5
-        [ResponseType(typeof(VehicleType))]
-        public IHttpActionResult DeleteVehicleType(int id)
+        // DELETE: api/Owners/5
+        [ResponseType(typeof(Owner))]
+        public IHttpActionResult DeleteOwner(int id)
         {
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
-            if (vehicleType == null)
+            Owner owner = db.Owners.Find(id);
+            if (owner == null)
             {
                 return NotFound();
             }
 
-            db.VehicleTypes.Remove(vehicleType);
+            db.Owners.Remove(owner);
             db.SaveChanges();
 
-            return Ok(vehicleType);
+            return Ok(owner);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +126,9 @@ namespace Garage3.Controllers
             base.Dispose(disposing);
         }
 
-        private bool VehicleTypeExists(int id)
+        private bool OwnerExists(int id)
         {
-            return db.VehicleTypes.Count(e => e.Id == id) > 0;
+            return db.Owners.Count(e => e.PersonId == id) > 0;
         }
     }
 }

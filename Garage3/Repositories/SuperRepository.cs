@@ -23,17 +23,17 @@ namespace Garage3.Repositories
 
         public IEnumerable<Person> GetPeople()
         {
-            return db.db_Persons;
+            return db.People.ToList();
         }
 
         public Person FindPersonById(int? id)
         {
-            return db.db_Persons.Find(id);
+            return db.People.Find(id);
         }
 
         public void AddPerson(Person p)
         {
-            db.db_Persons.Add(p);
+            db.People.Add(p);
             db.SaveChanges();
         }
 
@@ -45,7 +45,7 @@ namespace Garage3.Repositories
 
         public void RemovePerson(Person p)
         {
-            db.db_Persons.Remove(p);
+            db.People.Remove(p);
             db.SaveChanges();
         }
 
@@ -60,13 +60,13 @@ namespace Garage3.Repositories
 
         public List<VehicleType> GetAllVehicleTypes()
         {
-            return db.db_VehicleTypes.ToList();
+            return db.VehicleTypes.ToList();
         }
 
         public List<string> GetAllVehicleTypeNames()
         {
             List<string> tmp = new List<string>();
-            foreach(var vt in db.db_VehicleTypes)
+            foreach(var vt in db.VehicleTypes)
             {
                 tmp.Add(vt.Type);
             }
@@ -75,12 +75,12 @@ namespace Garage3.Repositories
 
         public VehicleType FindVehicleTypeById(int? id)
         {
-            return db.db_VehicleTypes.Find(id);
+            return db.VehicleTypes.Find(id);
         }
 
         public void AddVehicleType(VehicleType vt)
         {
-            db.db_VehicleTypes.Add(vt);
+            db.VehicleTypes.Add(vt);
             db.SaveChanges();
         }
 
@@ -92,7 +92,7 @@ namespace Garage3.Repositories
 
         public void VehicleTypeRemove(int id)
         {
-            db.db_VehicleTypes.Remove(FindVehicleTypeById(id));
+            db.VehicleTypes.Remove(FindVehicleTypeById(id));
             db.SaveChanges();
         }
 
@@ -123,24 +123,24 @@ namespace Garage3.Repositories
 
         public List<Vehicle> GetAllVehicles()
         {
-            return db.db_Vehicles.ToList();
+            return db.Vehicles.ToList();
         }
 
         public Vehicle FindVehicleById(int? id)
         {
-            return db.db_Vehicles.Find(id);
+            return db.Vehicles.Find(id);
         }
 
         public void AddVehicle(Vehicle v)
         {
-            db.db_Vehicles.Add(v);
+            db.Vehicles.Add(v);
             db.SaveChanges();
         }
 
         public void AddVehicle(Vehicle v, VehicleType vehicleType)
         {
             v.VehicleType = vehicleType;
-            db.db_Vehicles.Add(v);
+            db.Vehicles.Add(v);
             db.SaveChanges();
         }
 
@@ -152,7 +152,7 @@ namespace Garage3.Repositories
 
         public void RemoveVehicle(int id)
         {
-            db.db_Vehicles.Remove(FindVehicleById(id));
+            db.Vehicles.Remove(FindVehicleById(id));
             db.SaveChanges();
         }
 
@@ -162,7 +162,7 @@ namespace Garage3.Repositories
 
         public List<Owner> GetAllOwners()
         {
-            return db.db_Owners.ToList();
+            return db.Owners.ToList();
         }
 
         public void MakeOwner(Vehicle v, Person p)
@@ -178,12 +178,12 @@ namespace Garage3.Repositories
 
         public Owner FindOwnerById(int? id)
         {
-            return db.db_Owners.Find(id);
+            return db.Owners.Find(id);
         }
 
         public void AddOwner(Owner o)
         {
-            db.db_Owners.Add(o);
+            db.Owners.Add(o);
             db.SaveChanges();
         }
 
@@ -195,7 +195,7 @@ namespace Garage3.Repositories
         
         public void RemoveOwner(int id)
         {
-            db.db_Owners.Remove(FindOwnerById(id));
+            db.Owners.Remove(FindOwnerById(id));
             db.SaveChanges();
         }
 

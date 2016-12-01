@@ -13,44 +13,44 @@ using Garage3.Entities;
 
 namespace Garage3.Controllers
 {
-    public class VehicleTypesController : ApiController
+    public class VehiclesController : ApiController
     {
         private AppContext db = new AppContext();
 
-        // GET: api/VehicleTypes
-        public IQueryable<VehicleType> Get_VehicleTypes()
+        // GET: api/Vehicles
+        public ICollection<Vehicle> GetVehicles()
         {
-            return db.VehicleTypes;
+            return db.Vehicles.ToList();
         }
 
-        // GET: api/VehicleTypes/5
-        [ResponseType(typeof(VehicleType))]
-        public IHttpActionResult GetVehicleType(int id)
+        // GET: api/Vehicles/5
+        [ResponseType(typeof(Vehicle))]
+        public IHttpActionResult GetVehicle(int id)
         {
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
-            if (vehicleType == null)
+            Vehicle vehicle = db.Vehicles.Find(id);
+            if (vehicle == null)
             {
                 return NotFound();
             }
 
-            return Ok(vehicleType);
+            return Ok(vehicle);
         }
 
-        // PUT: api/VehicleTypes/5
+        // PUT: api/Vehicles/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutVehicleType(int id, VehicleType vehicleType)
+        public IHttpActionResult PutVehicle(int id, Vehicle vehicle)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != vehicleType.Id)
+            if (id != vehicle.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(vehicleType).State = EntityState.Modified;
+            db.Entry(vehicle).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace Garage3.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VehicleTypeExists(id))
+                if (!VehicleExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +71,35 @@ namespace Garage3.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/VehicleTypes
-        [ResponseType(typeof(VehicleType))]
-        public IHttpActionResult PostVehicleType(VehicleType vehicleType)
+        // POST: api/Vehicles
+        [ResponseType(typeof(Vehicle))]
+        public IHttpActionResult PostVehicle(Vehicle vehicle)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.VehicleTypes.Add(vehicleType);
+            db.Vehicles.Add(vehicle);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = vehicleType.Id }, vehicleType);
+            return CreatedAtRoute("DefaultApi", new { id = vehicle.Id }, vehicle);
         }
 
-        // DELETE: api/VehicleTypes/5
-        [ResponseType(typeof(VehicleType))]
-        public IHttpActionResult DeleteVehicleType(int id)
+        // DELETE: api/Vehicles/5
+        [ResponseType(typeof(Vehicle))]
+        public IHttpActionResult DeleteVehicle(int id)
         {
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
-            if (vehicleType == null)
+            Vehicle vehicle = db.Vehicles.Find(id);
+            if (vehicle == null)
             {
                 return NotFound();
             }
 
-            db.VehicleTypes.Remove(vehicleType);
+            db.Vehicles.Remove(vehicle);
             db.SaveChanges();
 
-            return Ok(vehicleType);
+            return Ok(vehicle);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +111,9 @@ namespace Garage3.Controllers
             base.Dispose(disposing);
         }
 
-        private bool VehicleTypeExists(int id)
+        private bool VehicleExists(int id)
         {
-            return db.VehicleTypes.Count(e => e.Id == id) > 0;
+            return db.Vehicles.Count(e => e.Id == id) > 0;
         }
     }
 }
