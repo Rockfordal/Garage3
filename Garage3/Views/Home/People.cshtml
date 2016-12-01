@@ -1,0 +1,20 @@
+﻿<h3>Personer</h3>
+
+<div ng-controller="PersonCtrl">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>SSN</th>
+                <th>Förnamn</th>
+                <th>Efternamn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="person in people">
+                <td>{{person.SSN}}</td>
+                <td>{{person.FirstName}}</td>
+                <td>{{person.LastName}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

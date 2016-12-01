@@ -11,6 +11,7 @@
     <script src="~/Scripts/angular-animate.js"></script>
     <script src="~/App/services.js"></script>
     <script src="~/App/controllers.js"></script>
+    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.min.css">
 </head>
 <body ng-app="garage">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -27,6 +28,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Hem", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Fordon", "Vehicles", "Home", new {area = "" }, null)</li>
+                    <li>@Html.ActionLink("Personer", "People", "Home", new { area = "" }, null)</li>
                 </ul>
             </div>
         </div>

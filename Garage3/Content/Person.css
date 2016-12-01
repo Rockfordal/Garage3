@@ -1,0 +1,8 @@
+﻿.AngularTable {
+    border: 1px grey solid;
+}
+
+.AngularTable th, td {
+    border: 1px grey solid;
+    background: blue;
+}

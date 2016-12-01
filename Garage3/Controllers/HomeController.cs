@@ -14,5 +14,19 @@ namespace Garage3.Controllers
 
             return View();
         }
+
+        public ActionResult Vehicles()
+        {
+            ViewBag.Title = "Lista av fordon";
+
+            return View();
+        }
+
+        public ActionResult People()
+        {
+            ViewBag.Title = "Lista av personer";
+
+            return View();
+        }
     }
 }

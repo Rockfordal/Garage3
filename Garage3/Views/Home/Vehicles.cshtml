@@ -1,0 +1,65 @@
+﻿<h3>Fordon</h3>
+
+<div ng-controller="VehicleCtrl">
+    <button ng-click="toggle = !toggle">{{toggleText}}</button>
+    <form ng-show="toggle" class="form-horizontal" role="form" ng-submit="addRow()">
+        <div class="form-group">
+            <label for="InputRegNr">Registreringsnummer</label>
+            <input type="text" class="form-control" id="InputRegNr" placeholder="ABC123" ng-model="RegNr"/>
+        </div>
+        <div class="form-group">
+            <label for="InputManufacturer">Märke</label>
+            <input type="text" class="form-control" id="InputManufacturer" placeholder="Bolbo" ng-model="Manufacturer" />
+        </div>
+        <div class="form-group">
+            <label for="InputModel">Modell</label>
+            <input type="text" class="form-control" id="InputModel" placeholder="tvåförti" ng-model="Model" />
+        </div>
+        <div class="form-group">
+            <label for="InputNrOfWheels">Antal hjul</label>
+            <input type="number" class="form-control" id="InputNrOfWheels" placeholder="5" ng-model="NumberOfWheels" />
+        </div>
+        <div class="form-group">
+            <label for="InputColor">Färg</label>
+            <input type="text" class="form-control" id="InputColor" placeholder="Magenta" ng-model="Color" />
+        </div>
+        <div class="form-group">
+            <label for="InputType">Fordonstyp</label>
+            <select id="InputType" ng-model="VehicleTypeString">
+                <option selected="selected" value="1">Bil</option>
+                <option value="2">Lastbil</option>
+                <option value="3">Båt</option>
+                <option value="4">Motorcykel</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Lägg till" class="btn btn-primary" />
+        </div>
+    </form>
+    <label>Search: <input ng-model="searchText"></label>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ägare</th>
+                <th>Märke</th>
+                <th>Modell</th>
+                <th>Regnummer</th>
+                <th>Färg</th>
+                <th>Antal hjul</th>
+                <th>Fordonstyp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="vehicle in vehicles | filter:searchText">
+                <td>{{vehicle.Owner.Person.FirstName}} {{vehicle.Owner.Person.LastName}}</td>
+                <td>{{vehicle.Manufacturer}}</td>
+                <td>{{vehicle.Model}}</td>
+                <td>{{vehicle.RegNr}}</td>
+                <td>{{vehicle.Color}}</td>
+                <td>{{vehicle.NumberOfWheels}}</td>
+                <td>{{vehicle.VehicleType.Type}}</td>
+                <td><button ng-click="removeRow(vehicle.Id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -32,7 +32,6 @@ namespace Garage3.Controllers
             {
                 return NotFound();
             }
-
             return Ok(vehicleType);
         }
 
