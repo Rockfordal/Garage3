@@ -25,10 +25,10 @@ namespace Garage3.Controllers
         }
 
         // GET: api/People
-        public ICollection<Person> Get_People()
+        public ICollection<Person> GetPeople()
         {
-            //return db.People.ToList();
-            return _repo.GetPeople().ToList();
+            var people = _repo.GetPeople().ToList();
+            return people;
         }
 
         // GET: api/People/5
