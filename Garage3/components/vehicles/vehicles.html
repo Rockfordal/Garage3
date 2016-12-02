@@ -1,0 +1,12 @@
+﻿<h2>Fordon</h2>
+
+<div ng-controller="VehicleCtrl">
+    <ul class="list-group">
+        <li ng-repeat="vehicle in vehicles" class="list-group-item">
+            {{vehicle.Model}}
+            {{vehicle.Manufacturer}}
+            {{vehicle.Color}}
+            {{vehicle.RegNr}}
+        </li>
+    </ul>
+</div>

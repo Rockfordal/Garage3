@@ -9,9 +9,14 @@
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Scripts/angular-resource.js"></script>
     <script src="~/Scripts/angular-animate.js"></script>
-    <script src="~/App/services.js"></script>
-    <script src="~/App/controllers.js"></script>
+    @*<script src="~/Scripts/router.es5.js"></script>*@
+    <script src="~/Scripts/angular-ui-router.js"></script>
+    <script src="~/components/main.js"></script>
+    @*<script src="~/components/vehicles/vehicles.js"></script>*@
+    @*<script src="~/components/controllers.js"></script>*@
+    @*<script src="~/components/services.js"></script>*@
 </head>
+@*<body ng-app="garage" ng-controller="AppController as app">*@
 <body ng-app="garage">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -26,6 +31,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Hem", "Index", "Home", new { area = "" }, null)</li>
+                    <li><a ui-sref="vehicles" ui-sref-active="active">Fordon</a></li>
+                    <li><a ui-sref="people"   ui-sref-active="active">Personer</a></li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                 </ul>
             </div>
@@ -33,6 +40,7 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+        <ui-view></ui-view>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

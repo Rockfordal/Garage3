@@ -1,4 +1,7 @@
-﻿angular.module("GarageService", ["ngResource"])
+﻿(function () {
+    'use strict';
+
+angular.module("garage.services", ["ngResource"])
        .factory("VehicleType", function ($resource) {
            return $resource(
                "/api/vehicletypes/:Id",
@@ -30,3 +33,5 @@
                { "update": { method: "PUT" } }
           );
        });
+
+}());

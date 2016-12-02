@@ -180,6 +180,9 @@
     <Compile Include="Repositories\SuperRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="components\main.js" />
+    <Content Include="components\vehicles\vehicles.html" />
+    <Content Include="components\vehicles\vehicles.js" />
     <Content Include="App_Data\Store.mdf" />
     <Content Include="App_Data\Store_log.ldf">
       <DependentUpon>Store.mdf</DependentUpon>
@@ -215,10 +218,11 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="App\controllers.js" />
-    <Content Include="App\services.js" />
+    <Content Include="components\controllers.js" />
+    <Content Include="components\services.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -1003,6 +1007,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\router.es5.js" />
+    <Content Include="Scripts\router.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
