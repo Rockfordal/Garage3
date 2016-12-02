@@ -6,13 +6,10 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="~/Scripts/angular.js"></script>
-    <script src="~/Scripts/angular-resource.js"></script>
-    <script src="~/Scripts/angular-animate.js"></script>
-    <script src="~/App/services.js"></script>
-    <script src="~/App/controllers.js"></script>
+
     <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.min.css">
 </head>
+<menu-bar brand="'Garage'">
 <body ng-app="garage">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -28,22 +25,34 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Hem", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Fordon", "Vehicles", "Home", new {area = "" }, null)</li>
+                    <li>@Html.ActionLink("Fordon", "Vehicles", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Personer", "People", "Home", new { area = "" }, null)</li>
                 </ul>
             </div>
         </div>
     </div>
+    </menu-bar>
+
     <div class="container body-content">
-        @RenderBody()
+    <ui-view>
+            @RenderBody()
+    </ui-view>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="/Scripts/angular.js"></script>
+    <script src="/Scripts/angular-ui-router.js"></script>
+    <script src="/Scripts/angular-resource.js"></script>
+    <script src="/Scripts/angular-animate.js"></script>
+    <script src="/App/services.js"></script>
+    <script src="/App/app.module.js"></script>
+    <script src="/App/navbar/index.js"></script>
+    <script src="/App/vehicles/index.js"></script>
+    <script src="/App/router.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

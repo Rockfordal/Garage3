@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Garage</title>
-    <!--@Scripts.Render("~/bundles/modernizr")-->
+    <!-- modernizr -->
     <link rel="stylesheet" href="/Content/bootstrap.min.css">
     <link rel="stylesheet" href="/Content/Site.css">
     <link rel="stylesheet" href="/Content/Person.css">
@@ -13,15 +13,11 @@
 <body ng-app="garage">
 <div ng-controller="MainCtrl">
 
-<menu-bar brand="'Brand'"></menu-bar>
+<menu-bar brand="'Garage'"></menu-bar>
 
 <div class="container body-content">
 
-    <!--<vehicle-index></vehicle-index>-->
-
-    <ui-view>
-
-    </ui-view>
+    <ui-view></ui-view>
 
     <hr />
     <footer>
@@ -29,14 +25,10 @@
     </footer>
 </div>
 </div>
-<!--@Scripts.Render("~/bundles/jquery") -->
-<!--@Scripts.Render("~/bundles/bootstrap")-->
 <script src="/Scripts/jquery-1.10.2.min.js"></script>
 <script src="/Scripts/bootstrap.min.js"></script>
-
 <script src="/Scripts/angular.js"></script>
 <script src="/Scripts/angular-ui-router.js"></script>
-
 <script src="/Scripts/angular-resource.js"></script>
 <script src="/Scripts/angular-animate.js"></script>
 <script src="/App/services.js"></script>
@@ -44,6 +36,5 @@
 <script src="/App/navbar/index.js"></script>
 <script src="/App/vehicles/index.js"></script>
 <script src="/App/router.js"></script>
-
 </body>
 </html>

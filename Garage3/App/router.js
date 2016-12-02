@@ -25,8 +25,8 @@
         component: 'vehicleIndex',
         resolve: {
             vehicles: function(Vehicle) {
-            // return Vehicle.query();
-            return sampleVehicles;
+            //return sampleVehicles;
+             return Vehicle.query();
             }
         }
     }
@@ -45,5 +45,4 @@
     $stateProvider.state(vehicleState);
     $stateProvider.state(peopleState);
     }); 
-
 })();

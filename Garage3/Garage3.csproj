@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -180,6 +181,13 @@
     <Compile Include="Repositories\SuperRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\navbar\index.html" />
+    <Content Include="App\navbar\index.js" />
+    <Content Include="App\people\index.js" />
+    <Content Include="App\people\person.js" />
+    <Content Include="App\router.js" />
+    <Content Include="App\vehicles\index.html" />
+    <Content Include="App\vehicles\index.js" />
     <Content Include="App_Data\Store.mdf" />
     <Content Include="App_Data\Store_log.ldf">
       <DependentUpon>Store.mdf</DependentUpon>
@@ -191,6 +199,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="index.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -218,7 +227,6 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="App\controllers.js" />
     <Content Include="App\services.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
