@@ -1,32 +1,33 @@
 ﻿<h3>Fordon</h3>
 
-<button class="btn btn-primary" ng-click=" model.toggleit()" data-toggle="modal" data-target="#addForm">{{model.toggleText}}</button>
+<button class="btn btn-primary" data-toggle="modal" data-target="#addForm">{{model.toggleText}}</button>
 
 <div id="addForm" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <form ng-show="model.toggle" class="form-horizontal modal-content" role="form" ng-submit="model.addRow();">
+        <!--ng-show="model.toggle" ng-click=" model.toggleit()"-->
+        <form class=" modal-content" role="form" ng-submit="model.addRow();">
             <div class="modal-body">
-                <div class="">
+                <div class="form-group">
                     <label for="InputRegNr">Registreringsnummer</label>
                     <input type="text" class="form-control" id="InputRegNr" placeholder="ABC123" ng-model="model.RegNr" />
                 </div>
-                <div class="">
+                <div class="form-group">
                     <label for="InputManufacturer">Märke</label>
                     <input type="text" class="form-control" id="InputManufacturer" placeholder="Bolbo" ng-model="model.Manufacturer" />
                 </div>
-                <div class="">
+                <div class="form-group">
                     <label for="InputModel">Modell</label>
                     <input type="text" class="form-control" id="InputModel" placeholder="tvåförti" ng-model="model.Model" />
                 </div>
-                <div class="">
+                <div class="form-group">
                     <label for="InputNrOfWheels">Antal hjul</label>
                     <input type="number" class="form-control" id="InputNrOfWheels" placeholder="5" ng-model="model.NumberOfWheels" />
                 </div>
-                <div class="">
+                <div class="form-group">
                     <label for="InputColor">Färg</label>
                     <input type="text" class="form-control" id="InputColor" placeholder="Magenta" ng-model="model.Color" />
                 </div>
-                <div class="">
+                <div class="form-group">
                     <label for="InputType">Fordonstyp</label>
                     <select id="InputType" class="form-control"
                             ng-model="model.VehicleType"
@@ -34,7 +35,7 @@
                     <!--ng-init="model.VehicleType = model.VehicleType || options[0]" -->
                     <!--ng-options="vt.name for vt in model.vehicletypes">-->
                 </div>
-                <div class="">
+                <div class="form-group">
                     <input type="submit" value="Lägg till" class="btn btn-primary" data-dissmiss="modal" />
                 </div>
             </div>
@@ -45,28 +46,68 @@
 
 <label>Sök: <input ng-model="model.searchText"></label>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Ägare</th>
-            <th>Märke</th>
-            <th>Modell</th>
-            <th>Regnummer</th>
-            <th>Färg</th>
-            <th>Antal hjul</th>
-            <th>Fordonstyp</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="vehicle in model.vehicles | filter:model.searchText">
-            <td>{{vehicle.Owner.Person.FirstName}} {{vehicle.Owner.Person.LastName}}</td>
-            <td>{{vehicle.Manufacturer}}</td>
-            <td>{{vehicle.Model}}</td>
-            <td>{{vehicle.RegNr}}</td>
-            <td>{{vehicle.Color}}</td>
-            <td>{{vehicle.NumberOfWheels}}</td>
-            <td>{{vehicle.VehicleType.Type}}</td>
-            <td><button ng-click="model.removeRow(vehicle.Id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
-        </tr>
-    </tbody>
-</table>
+<div class="col-md-4">
+    <h3>Sortera</h3>
+    <div class="form-group">
+        
+        <input type="radio" ng-model="model.sort" value="Owner" />
+        <label for="rOwner">Ägare</label>
+    </div>
+    <div class="form-group">
+        
+        <input type="radio" id="rManufacturer" ng-model="model.sort" value="Manufacturer" />
+        <label for="rManufacturer">Märke</label>
+    </div>
+    <div class="form-group">
+        
+        <input type="radio" id="rModel" ng-model="model.sort" value="Model" />
+        <label for="rModel">Modell</label>
+    </div>
+    <div class="form-group">
+        
+        <input type="radio" id="rRegNr" ng-model="model.sort" value="RegNr" />
+        <label for="rRegNr">Registreringsnummer</label>
+    </div>
+    <div class="form-group">
+        
+        <input type="radio" id="rColor" ng-model="model.sort" value="Color" />
+        <label for="rColor">Färg</label>
+    </div>
+    <div class="form-group">
+        
+        <input type="radio" id="rNrOfWheels" ng-model="model.sort" value="NumberOfWheels" />
+        <label for="rNrOfWheels">Antal hjul</label>
+    </div>
+    <div class="form-group">
+        
+        <input type="radio" id="rVehicleType" ng-model="model.sort" value="VehicleType.Type" />
+        <label for="rVehicleType">Fordonstyp</label>
+    </div>
+</div>
+<div class="col-md-8">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ägare</th>
+                <th>Märke</th>
+                <th>Modell</th>
+                <th>Regnummer</th>
+                <th>Färg</th>
+                <th>Antal hjul</th>
+                <th>Fordonstyp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="vehicle in model.vehicles | filter:model.searchText | orderBy:model.sort">
+                <td>{{vehicle.Owner.Person.FirstName}} {{vehicle.Owner.Person.LastName}}</td>
+                <td>{{vehicle.Manufacturer}}</td>
+                <td>{{vehicle.Model}}</td>
+                <td>{{vehicle.RegNr}}</td>
+                <td>{{vehicle.Color}}</td>
+                <td>{{vehicle.NumberOfWheels}}</td>
+                <td>{{vehicle.VehicleType.Type}}</td>
+                <td><button ng-click="model.removeRow(vehicle.Id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

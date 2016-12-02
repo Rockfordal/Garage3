@@ -3,12 +3,12 @@
 
     var sampleVehicles =
     [{  Id: 1, 
-        Manufacturer: "Audi",
-        Model: "Quattro",
-        RegNr: "AUD001", 
+        Manufacturer: "Test",
+        Model: "Bil",
+        RegNr: "BIL001", 
         NumberOfWheels: 4, 
-        Color: "Svart", 
-        VehicleType: { Id: 1,  Type: "Bil" }
+        Color: "Gra", 
+        VehicleType: { Id: 1, Type: "Bil" }
         // VehicleTypeString: "Bil"
     }]
 
@@ -27,11 +27,14 @@
             vehicles: function(Vehicle) {
                 var v = Vehicle.query();
                 return v;
-                //if (v.length > 0) {
-                //    return v
-                //} else {
+                //Vehicle.query(function(data) {
+                //    console.log("data", data);
+                //    //return data;
                 //    return sampleVehicles;
-                //}
+                //}, function(error) {
+                //    console.log("error");
+                //    return sampleVehicles;
+                //});
             }
         }
     }
