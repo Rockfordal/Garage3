@@ -176,6 +176,10 @@
     <Compile Include="Migrations\201611280916369_kryddatmodeller.designer.cs">
       <DependentUpon>201611280916369_kryddatmodeller.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612021158515_temp.cs" />
+    <Compile Include="Migrations\201612021158515_temp.Designer.cs">
+      <DependentUpon>201612021158515_temp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\SuperRepository.cs" />
@@ -1041,6 +1045,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611280916369_kryddatmodeller.resx">
       <DependentUpon>201611280916369_kryddatmodeller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612021158515_temp.resx">
+      <DependentUpon>201612021158515_temp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

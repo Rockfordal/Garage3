@@ -14,6 +14,13 @@ angular.module("garage").component("vehicleIndex", {
         }
         this.toggleit();
 
+        this.dir = true;
+
+        this.toggleDir = function () {
+            this.DirText = this.dir ? 'up' : 'down';
+            this.dir = !this.dir;
+        }
+
         this.vehicletypes = [
                 { value: '1', name: 'Bil' }, 
                 { value: '2', name: 'Lastbil' },

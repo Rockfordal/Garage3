@@ -81,17 +81,38 @@
     <table class="table table-hover table-striped">
         <thead class="">
             <tr>
-                <th><a href="#" ng-click="sortType = 'Owner'; sortReverse = !sortReverse">Ägare</a><i ng-show="sortType == 'Owner' && sortReverse" class="fa fa-arrow-down" aria-hidden="true"></i><i ng-show="sortType == 'Owner' && !sortReverse" class="fa fa-arrow-up" aria-hidden="true"></i></th>
-                <th><a href="#" ng-click="sortType = 'Manufacturer'; sortReverse = !sortReverse">Märke</a><i ng-show="sortType == 'Manufacturer' && sortReverse" class="fa fa-arrow-down" aria-hidden="true"></i><i ng-show="sortType == 'Manufacturer' && !sortReverse" class="fa fa-arrow-up" aria-hidden="true"></i></th>
-                <th><a href="#" ng-click="sortType = 'Model'; sortReverse = !sortReverse">Modell</a><i ng-show="sortType == 'Model' && sortReverse" class="fa fa-arrow-down" aria-hidden="true"></i><i ng-show="sortType == 'Model' && !sortReverse" class="fa fa-arrow-up" aria-hidden="true"></i></th>
-                <th><a href="#" ng-click="sortType = 'RegNr'; sortReverse = !sortReverse">Registreringsnummer</a><i ng-show="sortType == 'RegNr' && sortReverse" class="fa fa-arrow-down" aria-hidden="true"></i><i ng-show="sortType == 'RegNr' && !sortReverse" class="fa fa-arrow-up" aria-hidden="true"></i></th>
-                <th><a href="#" ng-click="sortType = 'Color'; sortReverse = !sortReverse">Färg</a><i ng-show="sortType == 'Color' && sortReverse" class="fa fa-arrow-down" aria-hidden="true"></i><i ng-show="sortType == 'Color' && !sortReverse" class="fa fa-arrow-up" aria-hidden="true"></i></th>
-                <th><a href="#" ng-click="sortType = 'NrOfWheels'; sortReverse = !sortReverse">Antal hjul</a><i ng-show="sortType == 'NrOfWheels' && sortReverse" class="fa fa-arrow-down" aria-hidden="true"></i><i ng-show="sortType == 'NrOfWheels' && !sortReverse" class="fa fa-arrow-up" aria-hidden="true"></i></th>
-                <th><a href="#" ng-click="sortType = 'Type'; sortReverse = !sortReverse">Fordonstyp</a><i ng-show="sortType == 'Type' && sortReverse" class="fa fa-arrow-down" aria-hidden="true"></i><i ng-show="sortType == 'Type' && !sortReverse" class="fa fa-arrow-up" aria-hidden="true"></i></th>
+                <th>
+                    <a href="#" ng-click="sortType = 'Owner'; model.toggleDir();">Ägare</a>
+                    <i ng-show="sortType == 'Owner'" class="fa fa-arrow-{{model.DirText}}" aria-hidden="true"></i>
+                </th>
+                <th>
+                    <a href="#" ng-click="sortType = 'Manufacturer'; model.toggleDir();">Märke</a>
+                    <i ng-show="sortType == 'Manufacturer'" class="fa fa-arrow-{{model.DirText}}" aria-hidden="true"></i>
+                </th>
+                <th>
+                    <a href="#" ng-click="sortType = 'Model'; model.toggleDir();">Modell</a>
+                    <i ng-show="sortType == 'Model'" class="fa fa-arrow-{{model.DirText}}" aria-hidden="true"></i>
+                </th>
+                <th>
+                    <a href="#" ng-click="sortType = 'RegNr'; model.toggleDir();">Registreringsnummer</a>
+                    <i ng-show="sortType == 'RegNr'" class="fa fa-arrow-{{model.DirText}}" aria-hidden="true"></i>
+                </th>
+                <th>
+                    <a href="#" ng-click="sortType = 'Color'; model.toggleDir();">Färg</a>
+                    <i ng-show="sortType == 'Color'" class="fa fa-arrow-{{model.DirText}}" aria-hidden="true"></i>
+                </th>
+                <th>
+                    <a href="#" ng-click="sortType = 'NrOfWheels'; model.toggleDir();">Antal hjul</a>
+                    <i ng-show="sortType == 'NrOfWheels'" class="fa fa-arrow-{{model.DirText}}" aria-hidden="true"></i>
+                </th>
+                <th>
+                    <a href="#" ng-click="sortType = 'Type'; model.toggleDir();">Fordonstyp</a>
+                    <i ng-show="sortType == 'Type'" class="fa fa-arrow-{{model.DirText}}" aria-hidden="true"></i>
+                </th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="vehicle in model.vehicles | filter:model.searchText | orderBy:sortType:sortReverse">
+            <tr ng-repeat="vehicle in model.vehicles | filter:model.searchText | orderBy:sortType:model.dir">
                 <td>{{vehicle.Owner.Person.FirstName}} {{vehicle.Owner.Person.LastName}}</td>
                 <td>{{vehicle.Manufacturer}}</td>
                 <td>{{vehicle.Model}}</td>
