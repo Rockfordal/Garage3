@@ -44,12 +44,10 @@ angular.module("garage").component("vehicleIndex", {
             this.rensa();
         }
 
-        //    });
         //    //alert(this.getVt(this.VehicleType.name));
         //    this.vehicles.push(vehicle);
         //    vehicle.$save();
         //    this.rensa();
-        //}
 
         //this.getVt = function(VehicleType)
         //{
@@ -63,26 +61,17 @@ angular.module("garage").component("vehicleIndex", {
         //        return this.vehicletypes[3];
         //}
 
-
         this.addVehicle = function (newVehicle) {
             console.log(newVehicle);
             newVehicle.$save();
             this.vehicles.push(newVehicle);
         };
 
-        this.removeRow = function (id) {
-            var index = -1;
-            var vArr = eval(this.vehicles);
-            for (var i = 0; i < vArr.length; i++) {
-                if (vArr[i].Id == id) {
-                    index = i;
-                    break;
-                }
-            }
-            if (index === -1) {
-                alert("Something went wrong");
-            }
-            this.vehicles.splice(index, 1);
+        this.remove = function (vehicle, index) {
+            var that = this;
+            Vehicle.delete({ id: vehicle.Id }, function () {
+                that.vehicles.splice(index, 1);
+            });
         }
 
         this.rensa = function() {
