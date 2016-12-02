@@ -190,6 +190,8 @@
     <Content Include="App\router.js" />
     <Content Include="App\vehicles\index.html" />
     <Content Include="App\vehicles\index.js" />
+    <Content Include="App\vehicletypes\index.html" />
+    <Content Include="App\vehicletypes\index.js" />
     <Content Include="App_Data\Store.mdf" />
     <Content Include="App_Data\Store_log.ldf">
       <DependentUpon>Store.mdf</DependentUpon>
