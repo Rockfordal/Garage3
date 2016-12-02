@@ -2,15 +2,14 @@
 
 <table class="table">
     <tr>
+        <th>SSN</th>
         <th>Förnamn</th>
         <th>Efternamn</th>
     </tr>
-    <tr>
-        <td>Kurt</td>
-        <td>Ohlsson</td>
-    </tr>
-    <tr>
-        <td>Benny</td>
-        <td>Hill</td>
+
+    <tr ng-repeat="person in model.people">
+        <td>{{person.SSN}}</td>
+        <td>{{person.FirstName}}</td>
+        <td>{{person.LastName}}</td>
     </tr>
 </table>

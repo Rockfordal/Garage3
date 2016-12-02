@@ -9,7 +9,6 @@
         NumberOfWheels: 4, 
         Color: "Gra", 
         VehicleType: { Id: 1, Type: "Bil" }
-        // VehicleTypeString: "Bil"
     }]
 
     angular.module("garage").config(function($stateProvider) {
@@ -17,7 +16,12 @@
     var vtState = {
         name: 'vehicletypes',
         url: '/vehicletypes',
-        template: '<h3>Fordonstyper</h3>'
+        component: 'vehicletypeIndex',
+        resolve: {
+            vehicletypes: function(VehicleType) {
+                return VehicleType.query();
+            }
+        }
     }
     var vehicleState = {
         name: 'fordon',
@@ -25,28 +29,19 @@
         component: 'vehicleIndex',
         resolve: {
             vehicles: function(Vehicle) {
-                var v = Vehicle.query();
-                return v;
-                //Vehicle.query(function(data) {
-                //    console.log("data", data);
-                //    //return data;
-                //    return sampleVehicles;
-                //}, function(error) {
-                //    console.log("error");
-                //    return sampleVehicles;
-                //});
+                return Vehicle.query();
             }
         }
     }
     var peopleState = {
         name: 'personer',
         url: '/people',
-        component: 'peopleIndex'
-        // resolve: {
-        //     people: function(People) {
-        //     return People.query();
-        //     }
-        // }
+        component: 'peopleIndex',
+         resolve: {
+             people: function(Person) {
+                 return Person.query();
+             }
+         }
     }
 
     $stateProvider.state(vtState);

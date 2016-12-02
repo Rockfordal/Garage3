@@ -1,0 +1,13 @@
+<h3>Fordonstyper</h3>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Typ</th>
+    </tr>
+
+    <tr ng-repeat="type in model.vehicletypes">
+        <td>{{type.Id}}</td>
+        <td>{{type.Type}}</td>
+    </tr>
+</table>
