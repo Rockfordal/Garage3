@@ -14,7 +14,7 @@
                 state: "fordon"
             }, {
                 name: "Personer",
-                state: "people"
+                state: "personer"
             }, {
                 name: "FordonsTyper",
                 state: "vehicletypes"
