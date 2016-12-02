@@ -23,11 +23,11 @@ angular.module("garage").component("vehicleIndex", {
         
         this.VehicleType = this.vehicletypes[0];
         // this.VehicleType = 1;
-        if (this.VehicleType && this.VehicleType.value)
-        {
-            this.VehicleType.value = this.VehicleType.value.split(":")[1];
-            alert(this.VehicleType.value);
-        }
+        //if (this.VehicleType && this.VehicleType.value)
+        //{
+        //    this.VehicleType.value = this.VehicleType.value.split(":")[1];
+        //    alert(this.VehicleType.value);
+        //}
             
         this.addRow = function () {
 
@@ -37,7 +37,7 @@ angular.module("garage").component("vehicleIndex", {
                 'Model': this.Model,
                 'NumberOfWheels': this.NumberOfWheels,
                 'Color': this.Color,
-                'VehicleType': {value : this.VehicleType.value, name : this.VehicleType.name}
+                'VehicleType': this.VehicleType
             });
             //alert(this.getVt(this.VehicleType.name));
             this.vehicles.push(vehicle);
@@ -78,7 +78,7 @@ angular.module("garage").component("vehicleIndex", {
             this.Model = '';
             this.NumberOfWheels = '';
             this.Color = '';
-            this.VehicleType = '';
+            //this.VehicleType = '';
         }
 
     }
