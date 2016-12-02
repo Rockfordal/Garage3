@@ -185,8 +185,10 @@
     <Compile Include="Repositories\SuperRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\app.module.js" />
     <Content Include="App\navbar\index.html" />
     <Content Include="App\navbar\index.js" />
+    <Content Include="App\people\index.html" />
     <Content Include="App\people\index.js" />
     <Content Include="App\people\person.js" />
     <Content Include="App\router.js" />

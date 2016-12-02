@@ -5,7 +5,7 @@ angular.module("garage").component("vehicleIndex", {
     templateUrl: "/App/vehicles/index.html",
     bindings: { vehicles: '<' },
     controllerAs: "model",
-    controller: function(Vehicle) {
+    controller: function (Vehicle) {
         this.toggle = true;
 
         this.toggleit = function() {
@@ -20,19 +20,41 @@ angular.module("garage").component("vehicleIndex", {
                 { value: '3', name: 'Båt' },
                 { value: '4', name: 'Motorcykel' }
         ];
+        
         this.VehicleType = this.vehicletypes[0];
         // this.VehicleType = 1;
-
+        //if (this.VehicleType && this.VehicleType.value)
+        //{
+        //    this.VehicleType.value = this.VehicleType.value.split(":")[1];
+        //    alert(this.VehicleType.value);
+        //}
+            
         this.addRow = function () {
-            this.vehicles.push({
-                'RegNr':             this.RegNr,
-                'Manufacturer':      this.Manufacturer,
-                'Model':             this.Model,
-                'NumberOfWheels':    this.NumberOfWheels,
-                'Color':             this.Color,
-                'VehicleTypeString': this.VehicleType
+
+            var vehicle = new Vehicle({
+                'RegNr': this.RegNr,
+                'Manufacturer': this.Manufacturer,
+                'Model': this.Model,
+                'NumberOfWheels': this.NumberOfWheels,
+                'Color': this.Color,
+                'VehicleType': this.VehicleType
             });
+            //alert(this.getVt(this.VehicleType.name));
+            this.vehicles.push(vehicle);
+            vehicle.$save();
             this.rensa();
+        }
+
+        this.getVt = function(VehicleType)
+        {
+            if (VehicleType == "Bil")
+                return this.vehicletypes[0];
+            else if (VehicleType == "Lastbil")
+                return this.vehicletypes[1];
+            else if (VehicleType == "Båt")
+                return this.vehicletypes[2];
+            else if (VehicleType == "Motorcykel")
+                return this.vehicletypes[3];
         }
 
         this.removeRow = function (id) {
@@ -56,7 +78,7 @@ angular.module("garage").component("vehicleIndex", {
             this.Model = '';
             this.NumberOfWheels = '';
             this.Color = '';
-            // this.VehicleType = '';
+            //this.VehicleType = '';
         }
 
     }
