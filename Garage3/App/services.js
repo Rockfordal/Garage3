@@ -1,4 +1,4 @@
-﻿angular.module("GarageService", ["ngResource"])
+﻿angular.module("garage.service", ["ngResource"])
        .factory("VehicleType", function ($resource) {
            return $resource(
                "/api/vehicletypes/:Id",
