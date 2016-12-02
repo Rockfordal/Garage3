@@ -71,6 +71,7 @@ namespace Garage3.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
         // POST: api/Vehicles
         [ResponseType(typeof(Vehicle))]
         public IHttpActionResult PostVehicle(Vehicle vehicle)
@@ -80,11 +81,15 @@ namespace Garage3.Controllers
                 return BadRequest(ModelState);
             }
 
+            var vtid = vehicle.VehicleType.Id;
+            var vt = db.VehicleTypes.FirstOrDefault(t => t.Id == vtid); 
+            vehicle.VehicleType = vt;
             db.Vehicles.Add(vehicle);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = vehicle.Id }, vehicle);
         }
+
 
         // DELETE: api/Vehicles/5
         [ResponseType(typeof(Vehicle))]
