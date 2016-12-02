@@ -2,7 +2,7 @@
 
 <button ng-click="model.toggleit()">{{model.toggleText}}</button>
 
-<form ng-show="model.toggle" class="form-horizontal" role="form" ng-submit="model.addRow();">
+<form ng-show="model.toggle" class="form-horizontal" role="form" ng-submit="model.addRow()">
     <div class="form-group">
         <label for="InputRegNr">Registreringsnummer</label>
         <input type="text" class="form-control" id="InputRegNr" placeholder="ABC123" ng-model="model.RegNr"/>
@@ -35,6 +35,7 @@
     <div class="form-group">
         <input type="submit" value="Lägg till" class="btn btn-primary" />
     </div>
+    {{model.VehicleType}}
 </form>
 
 <label>Sök: <input ng-model="model.searchText"></label>
