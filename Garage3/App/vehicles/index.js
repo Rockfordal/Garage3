@@ -30,32 +30,45 @@ angular.module("garage").component("vehicleIndex", {
         //}
             
         this.addRow = function () {
-
-            var vehicle = new Vehicle({
+            //var vehicle = new Vehicle({
+            var newVehicle = new Vehicle({
                 'RegNr': this.RegNr,
                 'Manufacturer': this.Manufacturer,
                 'Model': this.Model,
                 'NumberOfWheels': this.NumberOfWheels,
                 'Color': this.Color,
-                'VehicleType': this.VehicleType
+                'VehicleType': this.VehicleType,
+                'VehicleTypeString': this.VehicleType
             });
-            //alert(this.getVt(this.VehicleType.name));
-            this.vehicles.push(vehicle);
-            vehicle.$save();
+            this.addVehicle(newVehicle);
             this.rensa();
         }
 
-        this.getVt = function(VehicleType)
-        {
-            if (VehicleType == "Bil")
-                return this.vehicletypes[0];
-            else if (VehicleType == "Lastbil")
-                return this.vehicletypes[1];
-            else if (VehicleType == "Båt")
-                return this.vehicletypes[2];
-            else if (VehicleType == "Motorcykel")
-                return this.vehicletypes[3];
-        }
+        //    });
+        //    //alert(this.getVt(this.VehicleType.name));
+        //    this.vehicles.push(vehicle);
+        //    vehicle.$save();
+        //    this.rensa();
+        //}
+
+        //this.getVt = function(VehicleType)
+        //{
+        //    if (VehicleType == "Bil")
+        //        return this.vehicletypes[0];
+        //    else if (VehicleType == "Lastbil")
+        //        return this.vehicletypes[1];
+        //    else if (VehicleType == "Båt")
+        //        return this.vehicletypes[2];
+        //    else if (VehicleType == "Motorcykel")
+        //        return this.vehicletypes[3];
+        //}
+
+
+        this.addVehicle = function (newVehicle) {
+            console.log(newVehicle);
+            newVehicle.$save();
+            this.vehicles.push(newVehicle);
+        };
 
         this.removeRow = function (id) {
             var index = -1;
