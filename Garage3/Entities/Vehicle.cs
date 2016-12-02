@@ -27,7 +27,7 @@ namespace Garage3.Entities
         [Required]
         public string Model { get; set; }
 
-        //[Required]
+        [Required]
         public virtual VehicleType VehicleType { get; set; }
 
         //[DataType(DataType.Date)]
