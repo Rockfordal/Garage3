@@ -25,8 +25,12 @@
         component: 'vehicleIndex',
         resolve: {
             vehicles: function(Vehicle) {
-            //return sampleVehicles;
-             return Vehicle.query();
+                var v = Vehicle.query();
+                if (v.length > 0) {
+                    return v
+                } else {
+                    return sampleVehicles;
+                }
             }
         }
     }
