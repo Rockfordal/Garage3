@@ -2,26 +2,26 @@
 
 <button ng-click="model.toggleit()">{{model.toggleText}}</button>
 
-<form ng-show="model.toggle" class="form-horizontal" role="form" ng-submit="addRow()">
+<form ng-show="model.toggle" class="form-horizontal" role="form" ng-submit="model.addRow();">
     <div class="form-group">
         <label for="InputRegNr">Registreringsnummer</label>
-        <input type="text" class="form-control" id="InputRegNr" placeholder="ABC123" ng-model="RegNr"/>
+        <input type="text" class="form-control" id="InputRegNr" placeholder="ABC123" ng-model="model.RegNr"/>
     </div>
     <div class="form-group">
         <label for="InputManufacturer">Märke</label>
-        <input type="text" class="form-control" id="InputManufacturer" placeholder="Bolbo" ng-model="Manufacturer" />
+        <input type="text" class="form-control" id="InputManufacturer" placeholder="Bolbo" ng-model="model.Manufacturer" />
     </div>
     <div class="form-group">
         <label for="InputModel">Modell</label>
-        <input type="text" class="form-control" id="InputModel" placeholder="tvåförti" ng-model="Model" />
+        <input type="text" class="form-control" id="InputModel" placeholder="tvåförti" ng-model="model.Model" />
     </div>
     <div class="form-group">
         <label for="InputNrOfWheels">Antal hjul</label>
-        <input type="number" class="form-control" id="InputNrOfWheels" placeholder="5" ng-model="NumberOfWheels" />
+        <input type="number" class="form-control" id="InputNrOfWheels" placeholder="5" ng-model="model.NumberOfWheels" />
     </div>
     <div class="form-group">
         <label for="InputColor">Färg</label>
-        <input type="text" class="form-control" id="InputColor" placeholder="Magenta" ng-model="Color" />
+        <input type="text" class="form-control" id="InputColor" placeholder="Magenta" ng-model="model.Color" />
     </div>
     <div class="form-group">
         <label for="InputType">Fordonstyp</label>
@@ -60,7 +60,7 @@
             <td>{{vehicle.Color}}</td>
             <td>{{vehicle.NumberOfWheels}}</td>
             <td>{{vehicle.VehicleType.Type}}</td>
-            <td><button ng-click="removeRow(vehicle.Id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+            <td><button ng-click="model.removeRow(vehicle.Id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
         </tr>
     </tbody>
 </table>

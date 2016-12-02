@@ -26,11 +26,12 @@
         resolve: {
             vehicles: function(Vehicle) {
                 var v = Vehicle.query();
-                if (v.length > 0) {
-                    return v
-                } else {
-                    return sampleVehicles;
-                }
+                return v;
+                //if (v.length > 0) {
+                //    return v
+                //} else {
+                //    return sampleVehicles;
+                //}
             }
         }
     }
