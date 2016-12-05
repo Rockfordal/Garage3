@@ -31,52 +31,20 @@
                     <label for="InputType">Fordonstyp</label>
                     <select id="InputType" class="form-control"
                             ng-model="model.VehicleType"
-                            ng-options="vt.value as vt.name for vt in model.vehicletypes"></select>
+                            ng-options="vt.value as vt.Type for vt in model.vehicletypes track by vt.Id"></select>
                     <!--ng-init="model.VehicleType = model.VehicleType || options[0]" -->
                     <!--ng-options="vt.name for vt in model.vehicletypes">-->
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Lägg till" class="btn btn-primary" data-dissmiss="modal" />
+                    <input type="submit" value="Lägg till" class="btn btn-primary" data-dismiss="modal" />
                 </div>
             </div>
         </form>
     </div>
 </div>
 
-
 <label>Sök: <input ng-model="model.searchText"></label>
 
-<!--<div class="col-md-4">
-    <h3>Sortera</h3>
-    <div class="form-group">
-        <input type="radio" ng-model="model.sort" value="Owner" />
-        <label for="rOwner">Ägare</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="rManufacturer" ng-model="model.sort" value="Manufacturer" />
-        <label for="rManufacturer">Märke</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="rModel" ng-model="model.sort" value="Model" />
-        <label for="rModel">Modell</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="rRegNr" ng-model="model.sort" value="RegNr" />
-        <label for="rRegNr">Registreringsnummer</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="rColor" ng-model="model.sort" value="Color" />
-        <label for="rColor">Färg</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="rNrOfWheels" ng-model="model.sort" value="NumberOfWheels" />
-        <label for="rNrOfWheels">Antal hjul</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="rVehicleType" ng-model="model.sort" value="VehicleType.Type" />
-        <label for="rVehicleType">Fordonstyp</label>
-    </div>
-</div>class="col-md-8"-->
 <div>
     <table class="table table-hover table-striped">
         <thead class="">
