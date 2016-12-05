@@ -10,28 +10,30 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Garage3.DataAccess;
 using Garage3.Entities;
+using Garage3.Repositories;
 
 namespace Garage3.Controllers
 {
     public class VehicleTypesController : ApiController
     {
-        private AppContext db = new AppContext();
+        private readonly SuperRepository _repo;
+
+        public VehicleTypesController()
+        {
+            _repo = new SuperRepository();
+        }
 
         // GET: api/VehicleTypes
-        public IQueryable<VehicleType> Get_VehicleTypes()
+        public ICollection<VehicleType> Get_VehicleTypes()
         {
-            return db.VehicleTypes;
+            return _repo.GetAllVehicleTypes().ToList();
         }
 
         // GET: api/VehicleTypes/5
         [ResponseType(typeof(VehicleType))]
         public IHttpActionResult GetVehicleType(int id)
         {
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
-            if (vehicleType == null)
-            {
-                return NotFound();
-            }
+            var vehicleType = _repo.FindVehicleTypeById(id);
             return Ok(vehicleType);
         }
 
@@ -39,33 +41,7 @@ namespace Garage3.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutVehicleType(int id, VehicleType vehicleType)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != vehicleType.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(vehicleType).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!VehicleTypeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            _repo.UpdateVehicleType(vehicleType);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -79,8 +55,7 @@ namespace Garage3.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.VehicleTypes.Add(vehicleType);
-            db.SaveChanges();
+            _repo.AddVehicleType(vehicleType);
 
             return CreatedAtRoute("DefaultApi", new { id = vehicleType.Id }, vehicleType);
         }
@@ -89,30 +64,23 @@ namespace Garage3.Controllers
         [ResponseType(typeof(VehicleType))]
         public IHttpActionResult DeleteVehicleType(int id)
         {
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
-            if (vehicleType == null)
-            {
-                return NotFound();
-            }
+            _repo.RemoveVehicleType(id);
 
-            db.VehicleTypes.Remove(vehicleType);
-            db.SaveChanges();
-
-            return Ok(vehicleType);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _repo.Dispose();
             }
             base.Dispose(disposing);
         }
 
-        private bool VehicleTypeExists(int id)
-        {
-            return db.VehicleTypes.Count(e => e.Id == id) > 0;
-        }
+        //private bool VehicleTypeExists(int id)
+        //{
+        //    return _repo.VehicleTypes.Count(e => e.Id == id) > 0;
+        //}
     }
 }

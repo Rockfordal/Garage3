@@ -16,7 +16,6 @@ namespace Garage3.Controllers
 {
     public class PeopleController : ApiController
     {
-        private AppContext db = new AppContext();
         private readonly SuperRepository _repo;
 
         public PeopleController()
@@ -35,7 +34,8 @@ namespace Garage3.Controllers
         [ResponseType(typeof(Person))]
         public IHttpActionResult GetPerson(int id)
         {
-            Person person = db.People.Find(id);
+            Person person = _repo.FindPersonById(id);
+
             if (person == null)
             {
                 return NotFound();
@@ -58,23 +58,7 @@ namespace Garage3.Controllers
                 return BadRequest();
             }
 
-            db.Entry(person).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PersonExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            _repo.UpdatePerson(person);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -88,8 +72,7 @@ namespace Garage3.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.People.Add(person);
-            db.SaveChanges();
+            _repo.AddPerson(person);
 
             return CreatedAtRoute("DefaultApi", new { id = person.Id }, person);
         }
@@ -98,14 +81,8 @@ namespace Garage3.Controllers
         [ResponseType(typeof(Person))]
         public IHttpActionResult DeletePerson(int id)
         {
-            Person person = db.People.Find(id);
-            if (person == null)
-            {
-                return NotFound();
-            }
 
-            db.People.Remove(person);
-            db.SaveChanges();
+            var person = _repo.RemovePerson(id);
 
             return Ok(person);
         }
@@ -114,14 +91,10 @@ namespace Garage3.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _repo.Dispose();
             }
             base.Dispose(disposing);
         }
 
-        private bool PersonExists(int id)
-        {
-            return db.People.Count(e => e.Id == id) > 0;
-        }
     }
 }

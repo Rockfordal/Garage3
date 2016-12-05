@@ -40,25 +40,53 @@ namespace Garage3.Repositories
         public void UpdatePerson(Person p)
         {
             db.Entry(p).State = EntityState.Modified;
+
+            //db.Entry(person).State = EntityState.Modified;
+            //try
+            //{
+            //    db.SaveChanges();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!PersonExists(id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+
             db.SaveChanges();
         }
 
-        public void RemovePerson(Person p)
+        public Person RemovePerson(int id)
         {
-            db.People.Remove(p);
+
+            Person person = db.People.Find(id);
+            if (person == null)
+            {
+                //return NotFound();
+                return null;
+            }
+
+            db.People.Remove(person);
             db.SaveChanges();
+            return person;
         }
 
-        public void AddVehicle(Vehicle v, Owner o)
+        private bool PersonExists(int id)
         {
-
+            return GetPeople().Count(p => p.Id == id) > 0;
         }
 
         #endregion
 
         #region VehicleType
 
-        public IEnumerable<VehicleType> GetAllVehicleTypes()
+        public IQueryable<VehicleType> GetAllVehicleTypes()
         {
             return db.VehicleTypes;
         }
@@ -84,16 +112,40 @@ namespace Garage3.Repositories
             db.SaveChanges();
         }
 
+        public void UpdateVehicleType(VehicleType vt)
+        {
+            db.Entry(vt).State = EntityState.Modified;
+
+            //try
+            //{
+            //    db.SaveChanges();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!PersonExists(id))
+            //        return NotFound();
+            //    else
+            //        throw;
+            //}
+
+            db.SaveChanges();
+        }
+
         public void VehicleTypeEntry(VehicleType vt)
         {
             db.Entry(vt).State = EntityState.Modified;
             db.SaveChanges();
         }
 
-        public void VehicleTypeRemove(int id)
+        public void RemoveVehicleType(int id)
         {
             db.VehicleTypes.Remove(FindVehicleTypeById(id));
             db.SaveChanges();
+        }
+
+        private bool VehicleExists(int id)
+        {
+            return db.Vehicles.Count(e => e.Id == id) > 0;
         }
 
         #endregion
@@ -144,16 +196,37 @@ namespace Garage3.Repositories
             db.SaveChanges();
         }
 
+        public void UpdateVehicle(Vehicle vehicle)
+        {
+            db.Entry(vehicle).State = EntityState.Modified;
+
+            //try
+            //{
+            //    db.SaveChanges();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!VehicleExists(id))
+            //        return NotFound();
+            //    else
+            //        throw;
+            //}
+
+            db.SaveChanges();
+        }
+
         public void VehicleEntry(Vehicle v)
         {
             db.Entry(v).State = EntityState.Modified;
             db.SaveChanges();
         }
 
-        public void RemoveVehicle(int id)
+        public Vehicle RemoveVehicle(int id)
         {
-            db.Vehicles.Remove(FindVehicleById(id));
+            var vehicle = FindVehicleById(id);
+            db.Vehicles.Remove(vehicle);
             db.SaveChanges();
+            return vehicle;
         }
 
         #endregion
@@ -193,10 +266,17 @@ namespace Garage3.Repositories
             db.SaveChanges();
         }
         
-        public void RemoveOwner(int id)
+        public Owner RemoveOwner(int id)
         {
-            db.Owners.Remove(FindOwnerById(id));
+            var owner = FindOwnerById(id);
+            db.Owners.Remove(owner);
             db.SaveChanges();
+            return owner;
+        }
+
+        private bool OwnerExists(int id)
+        {
+            return db.Owners.Count(e => e.PersonId == id) > 0;
         }
 
         #endregion
