@@ -30,6 +30,9 @@
         resolve: {
             vehicles: function(Vehicle) {
                 return Vehicle.query();
+            },
+            vehicletypes: function (VehicleType) {
+                return VehicleType.query();
             }
         }
     }
