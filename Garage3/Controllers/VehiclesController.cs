@@ -16,7 +16,6 @@ namespace Garage3.Controllers
 {
     public class VehiclesController : ApiController
     {
-        //private AppContext db = new AppContext();
         private readonly SuperRepository _repo;
 
         // GET: api/Vehicles
