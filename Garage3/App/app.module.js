@@ -3,7 +3,10 @@
 
     var module = angular.module('garage',
         [ 'ui.router',
-          'garage.service'])
+          'ngAnimate',
+          'garage.data',
+          'garage.common'
+        ])
 
     module.controller('MainCtrl', function MainCtrl($scope) {
         $scope.brand = 'Garaget';
