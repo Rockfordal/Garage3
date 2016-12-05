@@ -4,8 +4,7 @@
 
 <div id="addForm" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <!--ng-show="model.toggle" ng-click=" model.toggleit()"-->
-        <form class=" modal-content" role="form" ng-submit="model.addRow();">
+        <form class=" modal-content" role="form" ng-submit="model.add();">
             <div class="modal-body">
                 <div class="form-group">
                     <label for="InputRegNr">Registreringsnummer</label>
@@ -30,13 +29,11 @@
                 <div class="form-group">
                     <label for="InputType">Fordonstyp</label>
                     <select id="InputType" class="form-control"
-                            ng-model="model.VehicleType"
-                            ng-options="vt.value as vt.Type for vt in model.vehicletypes track by vt.Id"></select>
-                    <!--ng-init="model.VehicleType = model.VehicleType || options[0]" -->
-                    <!--ng-options="vt.name for vt in model.vehicletypes">-->
+                            ng-options="vt as vt.Type for vt in model.vehicletypes track by vt.Id"
+                            ng-model="model.VehicleType"></select>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Lägg till" class="btn btn-primary" data-dismiss="modal" />
+                    <input type="submit" value="Lägg till" class="btn btn-primary" bata-dismiss="modal"></input>
                 </div>
             </div>
         </form>

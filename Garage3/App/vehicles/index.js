@@ -3,10 +3,13 @@
 
 angular.module("garage").component("vehicleIndex", {
     templateUrl: "/App/vehicles/index.html",
-    bindings: { vehicles: '<' },
-    bindings: { vehicletypes: '<' },
+    bindings: {
+        vehicles: '<',
+        vehicletypes: '<'
+    },
     controllerAs: "model",
-    controller: function (Vehicle) {
+    controller: function (Vehicle, Common) {
+        var vm = this;
         this.toggle = true;
 
         this.toggleText = this.toggle ? 'Skapa' : 'Stäng';
@@ -18,7 +21,7 @@ angular.module("garage").component("vehicleIndex", {
             this.dir = !this.dir;
         }
             
-        this.addRow = function () {
+        this.add = function () {
             var newVehicle = new Vehicle({
                 'RegNr': this.RegNr,
                 'Manufacturer': this.Manufacturer,
@@ -27,20 +30,14 @@ angular.module("garage").component("vehicleIndex", {
                 'Color': this.Color,
                 'VehicleType': this.VehicleType,
             });
-            this.addVehicle(newVehicle);
+            Common.AddEntity(newVehicle, this.vehicles);
+            angular.element('#addForm').modal('hide');
             this.rensa();
         }
 
-        this.addVehicle = function (newVehicle) {
-            console.log(newVehicle);
-            newVehicle.$save();
-            this.vehicles.push(newVehicle);
-        };
-
         this.remove = function (vehicle, index) {
-            var that = this;
             Vehicle.delete({ id: vehicle.Id }, function () {
-                that.vehicles.splice(index, 1);
+                vm.vehicles.splice(index, 1);
             });
         }
 
