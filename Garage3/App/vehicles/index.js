@@ -23,12 +23,12 @@ angular.module("garage").component("vehicleIndex", {
             
         this.add = function () {
             var newVehicle = new Vehicle({
-                'RegNr': this.RegNr,
-                'Manufacturer': this.Manufacturer,
-                'Model': this.Model,
+                'RegNr': this.RegNr.toUpperCase(),
+                'Manufacturer': capitalizeFirstLetter(this.Manufacturer),
+                'Model': capitalizeFirstLetter(this.Model),
                 'NumberOfWheels': this.NumberOfWheels,
-                'Color': this.Color,
-                'VehicleType': this.VehicleType,
+                'Color': capitalize(this.Color),
+                'VehicleType': this.VehicleType
             });
             Common.AddEntity(newVehicle, this.vehicles);
             angular.element('#addForm').modal('hide');
@@ -51,4 +51,18 @@ angular.module("garage").component("vehicleIndex", {
 
     }
 });
+
+function capitalize(str) {
+
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+//function capitalize(str) {
+//    return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+//}
+
 })();
