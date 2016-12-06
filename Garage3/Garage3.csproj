@@ -175,9 +175,13 @@
     <Compile Include="Migrations\201611280916369_kryddatmodeller.designer.cs">
       <DependentUpon>201611280916369_kryddatmodeller.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612021158515_temp.cs" />
-    <Compile Include="Migrations\201612021158515_temp.Designer.cs">
-      <DependentUpon>201612021158515_temp.cs</DependentUpon>
+    <Compile Include="Migrations\201612060915468_validering_regnr.cs" />
+    <Compile Include="Migrations\201612060915468_validering_regnr.Designer.cs">
+      <DependentUpon>201612060915468_validering_regnr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612060916227_nullable_vehicletype.cs" />
+    <Compile Include="Migrations\201612060916227_nullable_vehicletype.Designer.cs">
+      <DependentUpon>201612060916227_nullable_vehicletype.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1050,8 +1054,11 @@
     <EmbeddedResource Include="Migrations\201611280916369_kryddatmodeller.resx">
       <DependentUpon>201611280916369_kryddatmodeller.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612021158515_temp.resx">
-      <DependentUpon>201612021158515_temp.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612060915468_validering_regnr.resx">
+      <DependentUpon>201612060915468_validering_regnr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612060916227_nullable_vehicletype.resx">
+      <DependentUpon>201612060916227_nullable_vehicletype.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
