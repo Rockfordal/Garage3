@@ -11,14 +11,16 @@ namespace Garage3.Entities
         [Key]
         public int Id { get; set; }
 
-        [Required, MinLength(6), MaxLength(7)]
+        [Required(ErrorMessage = "RegNr måste anges")]
+        [MinLength(6, ErrorMessage = "RegNr måste vara minst 6 tecken långt")]
+        [MaxLength(10, ErrorMessage = "RegNr får inte vara länge än 10 tecken")]
+        [RegularExpression("^[A-Z0-9- ]{5,10}$", ErrorMessage = "RegNr måste bestå av siffror och bokstäver samt -")] 
         public string RegNr { get; set; }
 
         [Required]
         public string Color { get; set; }
 
-        [Required]
-        [Range(0, 100)]
+        [Required, Range(0, 100)]
         public int NumberOfWheels { get; set; }
 
         [Required]
