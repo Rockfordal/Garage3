@@ -6,10 +6,19 @@
 
 function AddEntity(newEntity, entities) {
     newEntity.$save(function (data, putResponseHeaders) {
-        //console.log('add success: ', data);
         entities.push(newEntity);
     }, function (res) {
-        console.log('fel vid skapa. modelState: ', res.data.ModelState);
+        var modelState = res.data.ModelState;
+        var l1, l2 = ''
+        console.log('Kunde inte skapa fordon.', res.data);
+
+        angular.forEach(modelState, function(outervalue, outerkey) {
+            var fields = outervalue;
+            angular.forEach(fields, function(value, key) {
+                console.log(outerkey + ': ' + value);
+            }, l1);
+        }, l2);
+
     });
     return null;
 };
