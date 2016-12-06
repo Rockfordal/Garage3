@@ -183,9 +183,12 @@ namespace Garage3.Repositories
             return db.Vehicles.Find(id);
         }
 
-        public void AddVehicle(Vehicle v)
+        public void AddVehicle(Vehicle vehicle)
         {
-            db.Vehicles.Add(v);
+            var vtid = vehicle.VehicleType.Id;
+            var vt = db.VehicleTypes.FirstOrDefault(t => t.Id == vtid);
+            vehicle.VehicleType = vt;
+            db.Vehicles.Add(vehicle);
             db.SaveChanges();
         }
 
