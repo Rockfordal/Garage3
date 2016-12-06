@@ -18,6 +18,11 @@ namespace Garage3.Controllers
     {
         private readonly SuperRepository _repo;
 
+        public VehiclesController()
+        {
+            _repo = new SuperRepository();
+        }
+
         // GET: api/Vehicles
         public ICollection<Vehicle> GetVehicles()
         {
